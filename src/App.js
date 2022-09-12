@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import List from "./List";
 import axios from "axios";
+import "./App.css";
 
 const welcome = {
   greeting: "Hey",
@@ -14,7 +15,7 @@ const welcome = {
 };
 
 const SearchForm = ({ searchTerm, onSearchInput, onSearchSubmit }) => (
-  <form onSubmit={onSearchSubmit}>
+  <form onSubmit={onSearchSubmit} className="search-form">
     <InputWithLabel
       id="search"
       value={searchTerm}
@@ -23,7 +24,11 @@ const SearchForm = ({ searchTerm, onSearchInput, onSearchSubmit }) => (
     >
       <strong>Search:</strong>
     </InputWithLabel>
-    <button type="submit" disabled={!searchTerm}>
+    <button
+      type="submit"
+      disabled={!searchTerm}
+      className="button button_large"
+    >
       Submit
     </button>
   </form>
@@ -47,7 +52,9 @@ const InputWithLabel = ({
 
   return (
     <>
-      <label htmlFor={id}>{children}</label>
+      <label htmlFor={id} className="label">
+        {children}
+      </label>
       &nbsp;
       <input
         ref={inputRef}
@@ -56,6 +63,7 @@ const InputWithLabel = ({
         value={value}
         autoFocus={isFocused}
         onChange={onInputChange}
+        className="input"
       />
     </>
   );
@@ -143,8 +151,8 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>
+    <div className="container">
+      <h1 className="headline-primary">
         {welcome.greeting} {welcome.title}
       </h1>
 
@@ -153,7 +161,6 @@ const App = () => {
         onSearchInput={handleSearchInput}
         onSearchSubmit={handleSearchSubmit}
       />
-      <hr />
 
       {stories.isError && <p>Something went wrong ...</p>}
 
