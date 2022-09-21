@@ -1,4 +1,5 @@
 import React from "react";
+import { FaCheck } from "react-icons/fa";
 
 const List = ({ list, onRemoveItem }) => (
   <ul>
@@ -22,7 +23,7 @@ const Item = ({ item, onRemoveItem }) => (
         onClick={() => onRemoveItem(item)}
         className="button button_small"
       >
-        Dismiss
+        <FaCheck />
       </button>
     </span>
   </li>
