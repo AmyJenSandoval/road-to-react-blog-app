@@ -134,12 +134,12 @@ const App = () => {
     handleFetchStories();
   }, [handleFetchStories]);
 
-  const handleRemoveStory = (item) => {
+  const handleRemoveStory = useCallback((item) => {
     dispatchStories({
       type: "REMOVE_STORY",
       payload: item,
     });
-  };
+  }, []);
 
   const handleSearchInput = (event) => {
     setSearchTerm(event.target.value);
@@ -149,6 +149,8 @@ const App = () => {
     setUrl(`${API_ENDPOINT}${searchTerm}`);
     event.preventDefault();
   };
+
+  console.log("B:App");
 
   return (
     <div className="container">
