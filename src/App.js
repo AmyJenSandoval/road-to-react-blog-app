@@ -4,6 +4,7 @@ import React, {
   useCallback,
   useRef,
   useReducer,
+  useMemo,
 } from "react";
 import List from "./List";
 import axios from "axios";
@@ -104,6 +105,12 @@ const storiesReducer = (state, action) => {
   }
 };
 
+const getSumComments = (stories) => {
+  console.log("C");
+
+  return stories.data.reduce((result, value) => result + value.num_comments, 0);
+};
+
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -152,10 +159,13 @@ const App = () => {
 
   console.log("B:App");
 
+  const sumComments = useMemo(() => getSumComments(stories), [stories]);
+
   return (
     <div className="container">
       <h1 className="headline-primary">
-        {welcome.greeting} {welcome.title}
+        {welcome.greeting} {welcome.title} My Hacker Stories with {sumComments}{" "}
+        comments.
       </h1>
 
       <SearchForm
